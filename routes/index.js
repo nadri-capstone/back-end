@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
     try{
         const UID = req.body.tname;
         console.log(UID);
-        await mongoose.model(UID, testSchema, 'nadritest').create({
+        await mongoose.model(UID, testSchema, UID).create({
             id: "testing"
         });
         res.send({'respose': 21011});
