@@ -6,10 +6,15 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try{
-        const UID = req.body.tname;
-        console.log(UID);
-        await mongoose.model(UID, testSchema, UID).create({
-            id: "testing"
+        const android_ID = req.body.android_id;
+        console.log(android_ID);
+        await mongoose.model(android_ID, pSchema, android_ID).create({
+            id: "testing",
+            tags: {
+                tag: "Dog", 
+                odj: "20, 21"
+            },
+            comment: "This is Test"
         });
         res.send({"respose": 21011});
     
