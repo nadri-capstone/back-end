@@ -4,11 +4,23 @@ const tSchema = require("../schemas/tags");
 const mongoose = require("mongoose");
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+    try{
+        const android_id = req.body.android_id;
+        await mongoose.model(android_id, pSchema, android_id).find({
+            id: "testing"
+        });
+
+    } catch(err) {
+        console.error(err);
+    }
+})
+
 router.post("/", async (req, res) => {
     try{
-        const android_ID = req.body.android_id;
-        console.log(android_ID);
-        await mongoose.model(android_ID, pSchema, android_ID).create({
+        const android_id = req.body.android_id;
+        console.log(android_id);
+        await mongoose.model(android_id, pSchema, android_id).create({
             id: "testing",
             tags: {
                 tag: "Dog", 
