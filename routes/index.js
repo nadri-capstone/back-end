@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     try{
         const android_id = req.body.android_id;
-        await mongoose.model(android_id, pSchema, android_id).find({
+        const result = await mongoose.model(android_id, pSchema, android_id).find({
             id: "testing"
         });
 
