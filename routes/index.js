@@ -8,7 +8,6 @@ router.get("/", async (req, res) => {
     try{
         const android_id = req.body.android_id;
         const result = await mongoose.model(android_id, pSchema, android_id).find({
-            id: "testing"
         });
 
     } catch(err) {
