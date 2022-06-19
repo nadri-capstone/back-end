@@ -25,7 +25,7 @@ router.post("/:id", async (req, res) => {
         console.log(body);
         body.forEach(photo =>
             console.log(photo);
-        }
+        )
         await mongoose.model(android_id, pSchema, android_id).create({
             datetime: Date(body.datetime),
             location: body.location,
