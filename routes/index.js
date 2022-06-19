@@ -23,11 +23,14 @@ router.post("/:id", async (req, res) => {
         console.log(android_id);
         var body = req.body;
         console.log(body);
+        for(photo in body){
+            console.log(photo);
+        }
         await mongoose.model(android_id, pSchema, android_id).create({
             datetime: Date(body.datetime),
             location: body.location,
         });
-        res.send({"respose": "isSuccess"});
+        res.send([{"respose": "isSuccess"}]);
     
     } catch(err) {
         console.error(err);
