@@ -5,11 +5,11 @@ const photo = new Schema({
     id: {
         type: String
     },
-    date: {
+    datetime: {
         type: Date
     },
     location: {
-        type: String
+        type: Object    
     },
     thumnail: {
         type: String
@@ -32,12 +32,24 @@ const photo = new Schema({
             page: {
                 type: String
             },
-            pagePosition: {
+            layoutOrder: {
                 type: Number
+            },
+            createAt: {
+                type: Date,
+                default: Date.now
+            },
+            updatedAt: {
+                type: Date,
+                default: Date.now
             }
         }
     ],
     createAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
         type: Date,
         default: Date.now
     }

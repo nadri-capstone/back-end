@@ -8,7 +8,7 @@ router.get("/:id", async (req, res) => {
     try{
         const android_id = req.params.id;
         console.log(android_id);
-        const result = await mongoose.model("android", pSchema, "android").find({});
+        const result = await mongoose.model(android_id, pSchema, android_id).find({});
         console.log(typeof(android_id));
         res.json(result);
 
@@ -17,21 +17,17 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
     try{
-        const android_id = req.body.android_id;
+        const android_id = req.params.id;
         console.log(android_id);
-        const time_data = req.body.time_data;
-        await mongoose.model("android", pSchema, "android").create({
-            id: "testing",
-            data: Date(req.body.time_data),
-            tags: {
-                tag: "Dog", 
-                odj: "20, 21"
-            },
-            comment: "This is Test"
+        var body = req.body;
+        console.log(body);
+        await mongoose.model(android_id, pSchema, android_id).create({
+            datetime: Date(body.datetime),
+            location: body.location,
         });
-        res.send({"respose": 21011});
+        res.send({"respose": "isSuccess"});
     
     } catch(err) {
         console.error(err);
