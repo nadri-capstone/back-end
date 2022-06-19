@@ -23,7 +23,7 @@ router.post("/:id", async (req, res) => {
         console.log(android_id);
         var body = req.body;
         console.log(body);
-        body.forEach(photo){
+        body.forEach(photo =>
             console.log(photo);
         }
         await mongoose.model(android_id, pSchema, android_id).create({
