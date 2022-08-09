@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const {Schema} = mongoose;
 const photo = new Schema({
-    id: {
+    uri: {
         type: String
     },
     datetime: {
@@ -32,27 +32,16 @@ const photo = new Schema({
             page: {
                 type: String
             },
-            layoutOrder: {
+            pageOrder: {
                 type: Number
             },
-            createAt: {
-                type: Date,
-                default: Date.now
-            },
-            updatedAt: {
-                type: Date,
-                default: Date.now
+            layoutOrder: {
+                type: Number
             }
         }
     ],
-    createAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
+}, {
+    timestamps: true,
 });
 
 module.exports = photo;
