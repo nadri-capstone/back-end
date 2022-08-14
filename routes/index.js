@@ -1,12 +1,15 @@
 const express = require("express");
 const pSchema = require("../schemas/photo");
 const tSchema = require("../schemas/tags");
+const aSchema = require("../schemas/album");
 const mongoose = require("mongoose");
 const router = express.Router();
 
-router.get("/:id/:date", async (req, res) => {
+router.get("/:id/:title", async (req, res) => {
     try{
         const android_id = req.params.id;
+
+        console.log(req);
 
         /*
         var datetime1 = new Date(req.params.date);
@@ -18,7 +21,7 @@ router.get("/:id/:date", async (req, res) => {
         */
 
         const result = await mongoose.model(android_id, pSchema, android_id).find({
-            pages : { $elemMatch: { page : req.params.date }}
+            pages : { $elemMatch: { album : req.params.title }}
         });
         console.log(result);
         res.json(result);
@@ -52,8 +55,6 @@ router.post("/:id", async (req, res) => {
             console.log(idx, ": ", photos[idx]);
             const photo = photos[idx];
 
-            console.log("_id: ", photo._id);
-
             if(photo._id) {
                 var result = await mongoose.model(android_id, pSchema, android_id).updateOne({
                     _id: photo._id 
@@ -67,9 +68,16 @@ router.post("/:id", async (req, res) => {
                 resJson.push(photo);
             }
             else {
+                var datetime; 
+                try {
+                    datetime = new Date(photo.datetime);
+                } catch (error) {
+                    console.log(error);
+                };
+
                 var result = await mongoose.model(android_id, pSchema, android_id).create({
                     uri: photo.uri,
-                    datetime: new Date(photo.datetime),
+                    datetime: datetime,
                     location: photo.location,
                     comment: photo.comment,
                     pages: photo.pages,
