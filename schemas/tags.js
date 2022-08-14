@@ -1,6 +1,6 @@
-const mongoos = require('mongoose');
+const mongoose = require('mongoose');
 
-const {Schema} = mongoos;
+const {Schema} = mongoose;
 const tags = new Schema({
     userID: String,
     tag1: {

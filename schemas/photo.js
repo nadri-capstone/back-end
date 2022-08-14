@@ -11,7 +11,7 @@ const photo = new Schema({
     location: {
         type: Object    
     },
-    thumnail: {
+    thumbnail: {
         type: String
     },
     tags: [
@@ -29,7 +29,7 @@ const photo = new Schema({
     },
     pages: [
         {
-            page: {
+            album: {
                 type: String
             },
             pageOrder: {
